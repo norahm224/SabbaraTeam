@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A2855F8D2A161685002F6A28 /* AllModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2855F8C2A161685002F6A28 /* AllModifiers.swift */; };
+		A2855F912A166CCF002F6A28 /* BalooBhaijaan-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2855F8F2A166C9C002F6A28 /* BalooBhaijaan-Regular.ttf */; };
 		A2E9C36C2A121BC0006D3B82 /* SabbaraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E9C36B2A121BC0006D3B82 /* SabbaraApp.swift */; };
 		A2E9C36E2A121BC0006D3B82 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E9C36D2A121BC0006D3B82 /* ContentView.swift */; };
 		A2E9C3702A121BC1006D3B82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2E9C36F2A121BC1006D3B82 /* Assets.xcassets */; };
@@ -16,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A2855F8C2A161685002F6A28 /* AllModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllModifiers.swift; sourceTree = "<group>"; };
+		A2855F8F2A166C9C002F6A28 /* BalooBhaijaan-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BalooBhaijaan-Regular.ttf"; sourceTree = "<group>"; };
+		A2855F922A166DD7002F6A28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A2E9C3682A121BC0006D3B82 /* Sabbara.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sabbara.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2E9C36B2A121BC0006D3B82 /* SabbaraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SabbaraApp.swift; sourceTree = "<group>"; };
 		A2E9C36D2A121BC0006D3B82 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A2855F8E2A166C60002F6A28 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A2855F8F2A166C9C002F6A28 /* BalooBhaijaan-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		A2E9C35F2A121BC0006D3B82 = {
 			isa = PBXGroup;
 			children = (
@@ -55,8 +68,11 @@
 		A2E9C36A2A121BC0006D3B82 /* Sabbara */ = {
 			isa = PBXGroup;
 			children = (
+				A2855F922A166DD7002F6A28 /* Info.plist */,
+				A2855F8E2A166C60002F6A28 /* Fonts */,
 				A2E9C36B2A121BC0006D3B82 /* SabbaraApp.swift */,
 				A2E9C36D2A121BC0006D3B82 /* ContentView.swift */,
+				A2855F8C2A161685002F6A28 /* AllModifiers.swift */,
 				A2E9C36F2A121BC1006D3B82 /* Assets.xcassets */,
 				A2E9C3742A121BC1006D3B82 /* Persistence.swift */,
 				A2E9C3762A121BC1006D3B82 /* Sabbara.xcdatamodeld */,
@@ -131,6 +147,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2855F912A166CCF002F6A28 /* BalooBhaijaan-Regular.ttf in Resources */,
 				A2E9C3732A121BC1006D3B82 /* Preview Assets.xcassets in Resources */,
 				A2E9C3702A121BC1006D3B82 /* Assets.xcassets in Resources */,
 			);
@@ -143,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2855F8D2A161685002F6A28 /* AllModifiers.swift in Sources */,
 				A2E9C3782A121BC1006D3B82 /* Sabbara.xcdatamodeld in Sources */,
 				A2E9C3752A121BC1006D3B82 /* Persistence.swift in Sources */,
 				A2E9C36E2A121BC0006D3B82 /* ContentView.swift in Sources */,
@@ -278,10 +296,11 @@
 				DEVELOPMENT_TEAM = Z6KZNQG7LM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Sabbara/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "\"\" UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -307,10 +326,11 @@
 				DEVELOPMENT_TEAM = Z6KZNQG7LM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Sabbara/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "\"\" UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
