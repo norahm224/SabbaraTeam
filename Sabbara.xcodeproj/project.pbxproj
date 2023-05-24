@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A23062782A1D2C8400574AC4 /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23062772A1D2C8400574AC4 /* Splash.swift */; };
+		A230627A2A1D2CA200574AC4 /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23062792A1D2CA200574AC4 /* MainPage.swift */; };
+		A230627C2A1D2D1600574AC4 /* GameStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A230627B2A1D2D1600574AC4 /* GameStart.swift */; };
+		A23062882A1E030D00574AC4 /* RoundDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23062872A1E030D00574AC4 /* RoundDescription.swift */; };
+		A230628A2A1E032400574AC4 /* AllPopUps.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23062892A1E032400574AC4 /* AllPopUps.swift */; };
+		A230628C2A1E033B00574AC4 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = A230628B2A1E033B00574AC4 /* Results.swift */; };
+		A230628E2A1E035700574AC4 /* PlayTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A230628D2A1E035700574AC4 /* PlayTeam.swift */; };
+		A23062902A1E037900574AC4 /* CharacterCustomised.swift in Sources */ = {isa = PBXBuildFile; fileRef = A230628F2A1E037900574AC4 /* CharacterCustomised.swift */; };
+		A23062922A1E03AC00574AC4 /* CreateOrEditRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23062912A1E03AC00574AC4 /* CreateOrEditRound.swift */; };
 		A2855F8D2A161685002F6A28 /* AllModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2855F8C2A161685002F6A28 /* AllModifiers.swift */; };
 		A2855F912A166CCF002F6A28 /* BalooBhaijaan-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2855F8F2A166C9C002F6A28 /* BalooBhaijaan-Regular.ttf */; };
 		A2E9C36C2A121BC0006D3B82 /* SabbaraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E9C36B2A121BC0006D3B82 /* SabbaraApp.swift */; };
@@ -18,6 +27,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A23062772A1D2C8400574AC4 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
+		A23062792A1D2CA200574AC4 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
+		A230627B2A1D2D1600574AC4 /* GameStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStart.swift; sourceTree = "<group>"; };
+		A23062872A1E030D00574AC4 /* RoundDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundDescription.swift; sourceTree = "<group>"; };
+		A23062892A1E032400574AC4 /* AllPopUps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPopUps.swift; sourceTree = "<group>"; };
+		A230628B2A1E033B00574AC4 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
+		A230628D2A1E035700574AC4 /* PlayTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayTeam.swift; sourceTree = "<group>"; };
+		A230628F2A1E037900574AC4 /* CharacterCustomised.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCustomised.swift; sourceTree = "<group>"; };
+		A23062912A1E03AC00574AC4 /* CreateOrEditRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditRound.swift; sourceTree = "<group>"; };
 		A2855F8C2A161685002F6A28 /* AllModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllModifiers.swift; sourceTree = "<group>"; };
 		A2855F8F2A166C9C002F6A28 /* BalooBhaijaan-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BalooBhaijaan-Regular.ttf"; sourceTree = "<group>"; };
 		A2855F922A166DD7002F6A28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -68,14 +86,23 @@
 		A2E9C36A2A121BC0006D3B82 /* Sabbara */ = {
 			isa = PBXGroup;
 			children = (
-				A2855F922A166DD7002F6A28 /* Info.plist */,
-				A2855F8E2A166C60002F6A28 /* Fonts */,
+				A2E9C36F2A121BC1006D3B82 /* Assets.xcassets */,
 				A2E9C36B2A121BC0006D3B82 /* SabbaraApp.swift */,
 				A2E9C36D2A121BC0006D3B82 /* ContentView.swift */,
 				A2855F8C2A161685002F6A28 /* AllModifiers.swift */,
-				A2E9C36F2A121BC1006D3B82 /* Assets.xcassets */,
 				A2E9C3742A121BC1006D3B82 /* Persistence.swift */,
+				A2855F922A166DD7002F6A28 /* Info.plist */,
 				A2E9C3762A121BC1006D3B82 /* Sabbara.xcdatamodeld */,
+				A23062772A1D2C8400574AC4 /* Splash.swift */,
+				A23062792A1D2CA200574AC4 /* MainPage.swift */,
+				A230627B2A1D2D1600574AC4 /* GameStart.swift */,
+				A23062872A1E030D00574AC4 /* RoundDescription.swift */,
+				A23062892A1E032400574AC4 /* AllPopUps.swift */,
+				A230628B2A1E033B00574AC4 /* Results.swift */,
+				A230628D2A1E035700574AC4 /* PlayTeam.swift */,
+				A230628F2A1E037900574AC4 /* CharacterCustomised.swift */,
+				A23062912A1E03AC00574AC4 /* CreateOrEditRound.swift */,
+				A2855F8E2A166C60002F6A28 /* Fonts */,
 				A2E9C3712A121BC1006D3B82 /* Preview Content */,
 			);
 			path = Sabbara;
@@ -161,9 +188,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2855F8D2A161685002F6A28 /* AllModifiers.swift in Sources */,
+				A23062922A1E03AC00574AC4 /* CreateOrEditRound.swift in Sources */,
+				A23062882A1E030D00574AC4 /* RoundDescription.swift in Sources */,
+				A230628A2A1E032400574AC4 /* AllPopUps.swift in Sources */,
 				A2E9C3782A121BC1006D3B82 /* Sabbara.xcdatamodeld in Sources */,
+				A230627C2A1D2D1600574AC4 /* GameStart.swift in Sources */,
+				A23062902A1E037900574AC4 /* CharacterCustomised.swift in Sources */,
 				A2E9C3752A121BC1006D3B82 /* Persistence.swift in Sources */,
 				A2E9C36E2A121BC0006D3B82 /* ContentView.swift in Sources */,
+				A230628C2A1E033B00574AC4 /* Results.swift in Sources */,
+				A23062782A1D2C8400574AC4 /* Splash.swift in Sources */,
+				A230627A2A1D2CA200574AC4 /* MainPage.swift in Sources */,
+				A230628E2A1E035700574AC4 /* PlayTeam.swift in Sources */,
 				A2E9C36C2A121BC0006D3B82 /* SabbaraApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
