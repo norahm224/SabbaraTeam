@@ -16,7 +16,7 @@ struct BigAndMediumButtonTextModifier: ViewModifier {
         content
             .bold()
             .foregroundColor(.white)
-            .font(.custom("BalooBhaijaan-Regular", size: 24))
+            .font(.custom("TufuliArabicDEMO-Medium", size: 24))
         //.font(.system(size: 24))
         
     }}
@@ -60,7 +60,7 @@ struct SmallButtonTextModifier: ViewModifier {
         content
             .bold()
             .foregroundColor(.white)
-            .font(.custom("BalooBhaijaan-Regular", size: 18))
+            .font(.custom("TufuliArabicDEMO-Medium", size: 18))
         //.font(.system(size: 24))
         
     }}
