@@ -37,6 +37,34 @@ struct BigButton3D: ButtonStyle {
         }
         //. compositingGroup()
     }}
+
+struct WhBigButton3D: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        ZStack {
+            let offset: CGFloat = 10
+            RoundedRectangle(cornerRadius: 10)
+                .frame(width: 350, height: 58)
+                .foregroundColor(Color("LpinkShadow"))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color("LpinkShadow"), lineWidth: 2) // Add pink border here
+                )
+                .offset(y: offset)
+            
+            RoundedRectangle(cornerRadius: 10)
+                .frame(width: 350, height: 58)
+                .foregroundColor(Color.white)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color("LpinkShadow"), lineWidth: 2) // Add pink border here
+                )
+                .offset(y: configuration.isPressed ? offset : 0)
+            
+            configuration.label
+                .offset(y: configuration.isPressed ? offset : 0)
+        }
+    }
+}
 struct MediumButton3D: ButtonStyle {
     func makeBody (configuration: Configuration) -> some View {
         ZStack {
