@@ -84,15 +84,28 @@ struct SmallButton3D: ButtonStyle {
 
 struct AllModifiers: View {
     var body: some View {
-        VStack{
-            Button("ابدأ اللعب"){}.buttonStyle(BigButton3D()).modifier(BigAndMediumButtonTextModifier())
-            Button("حفظ"){}.buttonStyle(MediumButton3D()).modifier(BigAndMediumButtonTextModifier())
-            Button("المتابعة"){}.buttonStyle(SmallButton3D()).modifier(SmallButtonTextModifier())
-
-        }
+        VStack {
+            Button(action: {}) {
+                Text(NSLocalizedString("Start_game", comment: ""))
             }
+            .buttonStyle(BigButton3D())
+            .modifier(BigAndMediumButtonTextModifier())
+            
+            Button(action: {}) {
+                Text(NSLocalizedString("Save", comment: ""))
+            }
+            .buttonStyle(MediumButton3D())
+            .modifier(BigAndMediumButtonTextModifier())
+            
+            Button(action: {}) {
+                Text(NSLocalizedString("Continue", comment: ""))
+            }
+            .buttonStyle(SmallButton3D())
+            .modifier(SmallButtonTextModifier())
+        }
+        .environment(\.layoutDirection, .rightToLeft)
+    }
 }
-
 
 struct AllModifiers_Previews: PreviewProvider {
     static var previews: some View {
