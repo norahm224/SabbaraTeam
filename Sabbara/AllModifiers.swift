@@ -14,7 +14,7 @@ import SwiftUI
 struct BigAndMediumButtonTextModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .bold()
+            //.bold()
             .foregroundColor(.white)
             .font(.custom("TufuliArabicDEMO-Medium", size: 24))
         //.font(.system(size: 24))
@@ -31,6 +31,24 @@ struct BigButton3D: ButtonStyle {
             RoundedRectangle (cornerRadius: 10)
                 .frame(width: 350 , height: 58)
                 .foregroundColor (Color("Lpink"))
+                .offset (y: configuration.isPressed ? offset : 0)
+            configuration.label
+                .offset (y: configuration.isPressed ? offset : 0)
+        }
+        //. compositingGroup()
+    }}
+
+struct GreenBigButton3D: ButtonStyle {
+    func makeBody (configuration: Configuration) -> some View {
+        ZStack {
+            let offset: CGFloat = 10
+            RoundedRectangle (cornerRadius: 10)
+                .frame(width: 350 , height: 58)
+                . foregroundColor (Color("DGreenShadow"))
+                .offset (y: offset)
+            RoundedRectangle (cornerRadius: 10)
+                .frame(width: 350 , height: 58)
+                .foregroundColor (Color("DGreen"))
                 .offset (y: configuration.isPressed ? offset : 0)
             configuration.label
                 .offset (y: configuration.isPressed ? offset : 0)
@@ -65,6 +83,36 @@ struct WhBigButton3D: ButtonStyle {
         }
     }
 }
+
+
+struct WhSmallButton3D: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        ZStack {
+            let offset: CGFloat = 10
+            RoundedRectangle(cornerRadius: 10)
+                .frame(width: 132 , height: 50)
+                .foregroundColor(Color("LpinkShadow"))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color("LpinkShadow"), lineWidth: 2) // Add pink border here
+                )
+                .offset(y: offset)
+            
+            RoundedRectangle(cornerRadius: 10)
+                .frame(width: 132 , height: 50)
+                .foregroundColor(Color.white)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color("LpinkShadow"), lineWidth: 2) // Add pink border here
+                )
+                .offset(y: configuration.isPressed ? offset : 0)
+            
+            configuration.label
+                .offset(y: configuration.isPressed ? offset : 0)
+        }
+    }
+}
+
 struct MediumButton3D: ButtonStyle {
     func makeBody (configuration: Configuration) -> some View {
         ZStack {
@@ -86,9 +134,9 @@ struct MediumButton3D: ButtonStyle {
 struct SmallButtonTextModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .bold()
+           // .bold()
             .foregroundColor(.white)
-            .font(.custom("TufuliArabicDEMO-Medium", size: 18))
+            .font(.custom("TufuliArabicDEMO-Medium", size: 24))
         //.font(.system(size: 24))
         
     }}
@@ -109,6 +157,44 @@ struct SmallButton3D: ButtonStyle {
         }
         //. compositingGroup()
     }}
+
+struct AddWordButton3D: ButtonStyle {
+    func makeBody (configuration: Configuration) -> some View {
+        ZStack {
+            let offset: CGFloat = 10
+            RoundedRectangle (cornerRadius: 10)
+                .frame(width: 350 , height: 58)
+                . foregroundColor (Color("LYellowShadow"))//LYellowShadow
+                .offset (y: offset)
+            RoundedRectangle (cornerRadius: 10)
+                .frame(width: 350 , height: 58)
+                .foregroundColor (Color("LYellow"))
+                .offset (y: configuration.isPressed ? offset : 0)
+            configuration.label
+                .offset (y: configuration.isPressed ? offset : 0)
+        }
+        //. compositingGroup()
+    }}
+
+//MARK: - Customize button popupView
+struct RedButton3D: ButtonStyle {
+
+func makeBody(configuration: Configuration) -> some View {
+    ZStack {
+        let offset: CGFloat = 10
+        RoundedRectangle(cornerRadius: 10)
+            .frame(width: 132, height: 50)
+            .foregroundColor(Color("RedWarnningShadow"))
+            .offset(y: offset)
+        RoundedRectangle(cornerRadius: 10)
+            .frame(width: 132, height: 50)
+            .foregroundColor(Color("RedWarnning"))
+            .offset(y: configuration.isPressed ? offset : 0)
+        configuration.label
+            .offset(y: configuration.isPressed ? offset : 0)
+    }
+}
+}
 
 struct AllModifiers: View {
     var body: some View {

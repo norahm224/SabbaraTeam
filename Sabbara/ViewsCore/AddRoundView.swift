@@ -10,14 +10,15 @@ import SwiftUI
 
 import SwiftUI
 
-let images = ["SabbaraChar1", "SabbaraChar2", "SabbaraChar3"]
+//let images = ["SabbaraChar1", "SabbaraChar2", "SabbaraChar3"]
 
 struct AddRoundView: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @Environment(\.dismiss) var dismiss
-    
+    @Environment(\.presentationMode) var presentationMode
+
     @State private var name = ""
-    @State private var selectedImage = "SabbaraChar4"//"SabbaraChar1"
+    @State private var selectedImage = "SabbaraChar2"//"SabbaraChar1"
     @State private var words = [String]()
     @State private var colors = "DGreen"
     @State private var colorsShadow = "DGreenShadow"
@@ -32,9 +33,12 @@ struct AddRoundView: View {
     @State private var offset: CGFloat = 10
     @State private var Offset: CGFloat = 5
     
+    //@Environment(\.presentationMode) var presentationMode
+
     
     var body: some View {
         NavigationView {
+            VStack{
             if isEnteringWords {
                 NameEntryView(name: $name, nextAction: {
                     isEnteringWords = false
@@ -42,26 +46,83 @@ struct AddRoundView: View {
                     
                     //                    submitAction()
                 })
-                .navigationBarHidden(true)
+                //.navigationBarHidden(true)
             } else if isEnteringImages {
                 ImageSelectionView(selectedImage: $selectedImage, selectedcolors: $colors, selectedcolorsShadow: $colorsShadow, nextAction: {
                     isEnteringImages = false
                     submitAction()
                     
                     //isEnteringWords = true
+                },BackAction: {
+                    isEnteringWords = true
+                    
+                    //                    isEnteringImages = false
+                    //submitAction()
+                    
                 })
-                .navigationBarHidden(true)
+                //.navigationBarHidden(true)
             } else {
                 WordEntryView(words: $words, newWord: $newWord, errorMessage: $errorMessage, submitAction: submitAction)
-                    .navigationBarHidden(true)
+                
+                //.navigationBarHidden(true)
             }
+            
+           // CustomNavAddRoundView(title: "EditxxxRound")
             
             
         }
+            .navigationBarItems(
+                trailing:
+                    
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        ZStack {
+                            Image("xmark")
+                                .resizable()
+                                .frame(width: 23, height: 24)
+                                .foregroundColor(.white)
+                                .padding()
+                            
+                        }
+                        
+                        .background(
+                            Circle()
+                                .fill(Color("Lpink"))
+                                .frame(width: 42.16, height: 41)
+                            
+                        )
+                    }
+                
+                    //.navigationBarBackButtonHidden(true)
+                    //.navigationBarItems(leading: CustomNavEditRoundView())
+                    
+
+                
+                
+                
+            )
+//
+//            .navigationBarBackButtonHidden(true)
+//            .navigationBarItems(leading: CustomNavAddRoundView())
+
+            .navigationBarBackButtonHidden(true)
+            //.navigationBarItems(leading: CustomNavigationTitle())
+
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                           // Center navigation bar item
+                    CustomNavAddRoundView()
+                       }
+            }
+            
+    }
+
+
     }
     
     private func submitAction() {
-        if words.count >= /*20*/ 2 { // Check if minimum word count is met
+        if words.count >= 20 { // Check if minimum word count is met
             DataController().addRound(
                 name: name,
                 images: selectedImage,
@@ -70,8 +131,10 @@ struct AddRoundView: View {
                 colorsShadow: colorsShadow,
                 context: managedObjContext)
             dismiss()
+            
         } else {
-            errorMessage = "Minimum word count not met. Please enter at least 20 words."
+            errorMessage = NSLocalizedString("Minimum word count not met. Please enter at least 20 words.", comment: "")
+
         }
     }
 }
@@ -81,16 +144,21 @@ struct ImageSelectionView: View {
     @Binding var selectedcolors: String
     @Binding var selectedcolorsShadow: String
     
-    
+
     var nextAction: () -> Void
+    var BackAction: () -> Void
+
+//    var BackAction: () -> Void
+//
+//    var nextAction: () -> Void
     @State private var selectedColor: Color = Color("DGreen")
     @State private var selectedShadow: Color = Color("DGreenShadow")
     @State private var selectedSabbara: Image = Image("SabbaraChar2")
     //@State private var selectedImage: String = "SabbaraChar2"//Image("SabbaraChar2")
-    
+    @Environment(\.presentationMode) var presentationMode
+
     var body: some View {
         VStack {
-            
             //MARK: -
             VStack {
                 
@@ -112,10 +180,13 @@ struct ImageSelectionView: View {
                 }
                 
                 
-                
-                VStack {
+                Spacer()
+                VStack(alignment: .leading){
                     Text("Choose your color")
-                        .font(.title2)
+                        .font(.custom("TufuliArabicDEMO-Medium", size: 24))
+                        .foregroundColor(.black)
+
+                        //.font(.title2)
                         .fontWeight(.regular)
                         .foregroundColor(.black)
                         .multilineTextAlignment(.trailing)
@@ -199,9 +270,10 @@ struct ImageSelectionView: View {
                     //                Spacer()
                 } //VStackColorsAndCactus
                 .padding()
-                VStack {
+                Spacer()
+                VStack(alignment: .leading){
                     Text("Choose your Sabbara")
-                        .font(.title2)
+                        .font(.custom("TufuliArabicDEMO-Medium", size: 24))
                         .fontWeight(.regular)
                         .foregroundColor(.black)
                         .multilineTextAlignment(.trailing)
@@ -259,15 +331,20 @@ struct ImageSelectionView: View {
             //MARK: -
             
             HStack{
-                Button("Back") {
-                    //nextAction()
-                }
-                .buttonStyle(SmallButton3D()).modifier(SmallButtonTextModifier())//
-                
+               
                 Button("Next") {
                     nextAction()
                 }
+                
                 .buttonStyle(SmallButton3D()).modifier(SmallButtonTextModifier())
+                
+                Button("Back") {
+                    BackAction()
+                    //nextAction()
+                }
+                .foregroundColor(Color("Lpink"))
+                .buttonStyle(WhSmallButton3D()).modifier(BigAndMediumButtonTextModifier())
+
             }
             
         }
@@ -282,13 +359,23 @@ struct NameEntryView: View {
     @State private var offset: CGFloat = 10
     @State private var Offset: CGFloat = 5
     
+    @Environment(\.presentationMode) var presentationMode
+
+
+    
     var body: some View {
         
         VStack(/*alignment: .leading*/){
+
+
+
             //Spacer()
             VStack(alignment: .leading){
-                Text("Enter Round Name")
-                    .font(.title3)
+                Text("Round Name")
+                    .font(.custom("TufuliArabicDEMO-Medium", size: 24))
+                    .foregroundColor(.black)
+
+
                 //.padding()
                 ZStack {
                     
@@ -301,30 +388,41 @@ struct NameEntryView: View {
                         .frame(width: 350 , height: 58)
                         .foregroundColor (Color("LYellow"))
                     
-                    TextField("Round name", text: $name)
+                    TextField("Round Name", text: $name)
                         .frame(width: 340 , height: 58)
                         .padding()
-                    
+                        .onChange(of: name) { newValue in
+                            // Trim the input to remove leading/trailing white spaces
+                            _ = newValue.trimmingCharacters(in: .whitespaces)
+
+                            // Check the character count and update the text accordingly
+                            if name.count > 11 {
+                                name = String(name.prefix(11))
+                            }
+                        }
+
                     
                 }
             }
-            Text("Maximum 25 letters")
-                .font(.caption2)
+            Text("Maximum 10 letters")
+                .font(.custom("TufuliArabicDEMO-Medium", size: 18))
+
             Spacer()
             Spacer()
             HStack{
-                Button("Back") {
-                    //
-                    //ImageSelectionView()
-                    nextAction()
-                }
-                .buttonStyle(SmallButton3D()).modifier(SmallButtonTextModifier())
+
                 Button("Next") {
                     nextAction()
+                  if name.count < 1 {
+                        name = NSLocalizedString("Your game", comment: "")
+                        print(name.count)
+                    }
+                    
                 }
-                .buttonStyle(SmallButton3D()).modifier(SmallButtonTextModifier())
-                
+                .buttonStyle(BigButton3D()).modifier(BigAndMediumButtonTextModifier())
+
             }
+
         }.padding()
             .padding()
     }
@@ -338,13 +436,43 @@ struct WordEntryView: View {
     
     @State private var offset: CGFloat = 10
     @State private var Offset: CGFloat = 5
-    
+    @Environment(\.presentationMode) var presentationMode
+
     
     var body: some View {
         VStack {
+            
+//            HStack(){
+//                Spacer()
+//
+//            Button(action: {
+//                self.presentationMode.wrappedValue.dismiss()
+//            }) {
+//
+//                Image("xmark")
+//                    .resizable()
+//                    .frame(width: 23, height: 24)
+//                    .foregroundColor(.white)
+//                    .padding()
+//            }.background(
+//                Circle()
+//                    .fill(Color("Lpink"))
+//                    .frame(width: 42.16, height: 41)
+//
+//            )
+//            .navigationBarBackButtonHidden(true)
+//            .navigationBarItems(leading: EmptyView())
+//        }
+
             VStack(alignment: .leading){
                 
-                Text("Enter Words")
+                
+                Text("Words")
+                    .font(.custom("TufuliArabicDEMO-Medium", size: 24))
+                    .foregroundColor(.black)
+
+                    //.modifier(BigAndMediumButtonTextModifier())
+
                     .font(.title3)
                     .padding()
                 
@@ -382,7 +510,7 @@ struct WordEntryView: View {
                                     Image(systemName:"trash.circle.fill" )
                                         .resizable()
                                         .frame(width: 25, height: 25)
-                                        .foregroundColor(.red)
+                                        .foregroundColor(Color("Lpink"))
                                         .onTapGesture {
                                             deleteWord(at: index)
                                         }
@@ -400,30 +528,40 @@ struct WordEntryView: View {
                 }//z
             }//v
             Spacer()
-            ZStack {
-                
-                
-                
-                //let offset: CGFloat = 10
-                RoundedRectangle (cornerRadius: 10)
-                    .frame(width: 350 , height: 58)
-                    . foregroundColor (Color("LYellowShadow"))
-                    .offset (x: Offset,y: offset)
-                RoundedRectangle (cornerRadius: 10)
-                    .frame(width: 350 , height: 58)
-                    .foregroundColor (Color("LYellow"))
-                
-                //                    Section() {
-                Button(action: addWord) {
-                    Label("Add Word", systemImage: "plus.circle")
+
+            
+            Button(action: {
+                                    addWord()
+            
+            }) {
+                HStack{
+                    Image("Plus")
+                        .resizable()
+                        .frame(width: 36, height: 36)
+                    
+                    Text("Add Word")
+                    
+                 
                 }
-                
             }
             
+                        .buttonStyle(AddWordButton3D())
+                        .modifier(BigAndMediumButtonTextModifier())
+//
+//            Button("Add Word") {
+//                //submitAction()
+//                addWord()
+//            }
+//            .buttonStyle(AddWordButton3D())
+//            .modifier(BigAndMediumButtonTextModifier())
+
+
             
             
             
             Text(errorMessage)
+                .font(Font.custom("TufuliArabicDEMO-Medium", size: 18))
+                //.font(.title3)
                 .foregroundColor(.red)
                 .padding()
             
@@ -457,3 +595,15 @@ struct AddRoundView_Previews: PreviewProvider {
 }
 
 
+
+struct CustomNavAddRoundView: View {
+    var body: some View {
+        //Spacer()
+//Text("  ")
+        Text("  Create Round")
+            .font(.custom("TufuliArabicDEMO-Medium", size: 26))
+            .foregroundColor(Color.black)
+        //Spacer()
+
+    }
+}
