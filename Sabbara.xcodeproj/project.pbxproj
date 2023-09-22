@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A26FBD12ABDEEBA00DF4124 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A26FBD02ABDEEBA00DF4124 /* GoogleService-Info.plist */; };
 		8A99A9852A32288E00937E20 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A99A9842A32288E00937E20 /* NotificationView.swift */; };
 		A23062782A1D2C8400574AC4 /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23062772A1D2C8400574AC4 /* Splash.swift */; };
 		A230627A2A1D2CA200574AC4 /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23062792A1D2CA200574AC4 /* MainPage.swift */; };
@@ -52,6 +53,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A26FBD02ABDEEBA00DF4124 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Desktop/untitled folder/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8A26FBD22ABDEF7500DF4124 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8A99A9842A32288E00937E20 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		A23062772A1D2C8400574AC4 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
 		A23062792A1D2CA200574AC4 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
@@ -121,6 +124,7 @@
 		A2E9C35F2A121BC0006D3B82 = {
 			isa = PBXGroup;
 			children = (
+				8A26FBD02ABDEEBA00DF4124 /* GoogleService-Info.plist */,
 				A2E9C36A2A121BC0006D3B82 /* Sabbara */,
 				A2E9C3692A121BC0006D3B82 /* Products */,
 			);
@@ -137,6 +141,7 @@
 		A2E9C36A2A121BC0006D3B82 /* Sabbara */ = {
 			isa = PBXGroup;
 			children = (
+				8A26FBD22ABDEF7500DF4124 /* GoogleService-Info.plist */,
 				C1A4A0F32A30B4F80001A932 /* SoundPlayer.swift */,
 				A29E16FF2A32E60C00BB0A4C /* SoundPlayerOmnya.swift */,
 				C1A4A0F22A30B4A20001A932 /* Sound */,
@@ -299,6 +304,7 @@
 				A2E9C3732A121BC1006D3B82 /* Preview Assets.xcassets in Resources */,
 				A2E9C3702A121BC1006D3B82 /* Assets.xcassets in Resources */,
 				C1A4A0EF2A30A7180001A932 /* SabbaraWrong.mp3 in Resources */,
+				8A26FBD12ABDEEBA00DF4124 /* GoogleService-Info.plist in Resources */,
 				A29E170A2A34A1A500BB0A4C /* SabbaraCheating.mp3 in Resources */,
 				A29E17042A347E5600BB0A4C /* Times-up.mp3 in Resources */,
 			);
