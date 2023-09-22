@@ -1,4 +1,4 @@
-//
+//rrr
 //  GameStart.swift
 //  Sabbara
 //
@@ -40,7 +40,7 @@ struct GameStart: View {
     @State private var showWrongView = false
     @State private var showWellDoneView = false
     @State private var readyCountdown = 3
-    @State private var fruitCountdown = 60 
+    @State private var fruitCountdown = 60
     @State private var isCountdownPaused = false
     @State private var showTimeIsUpView = false
     @State private var currentFruit = ""
@@ -52,112 +52,150 @@ struct GameStart: View {
     private let wrongFeedbackGenerator = UINotificationFeedbackGenerator()
     private let warningFeedbackGenerator = UINotificationFeedbackGenerator()
 
-    
+    @Environment(\.presentationMode) var presentationMode
+
     var body: some View {
-        VStack {
-            if showHoldInView {
-                HoldInPositionView()
-            } else if showReadyView {
-                //ReadyView(countdown1: readyCountdown)
-                ReadyView()
-                    .onAppear {
-                        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-                            readyCountdown -= 1
-                            if readyCountdown == 0 {
-                                timer.invalidate()
-                                showReadyView = false
+        NavigationView{
+            
+            VStack {
+                if showHoldInView {
+                    HoldInPositionView()
+                } else if showReadyView {
+                    //ReadyView(countdown1: readyCountdown)
+                    ReadyView()
+                        .onAppear {
+                            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                                readyCountdown -= 1
+                                if readyCountdown == 0 {
+                                    timer.invalidate()
+                                    showReadyView = false
+                                    showFruitView = true
+                                    getNextFruit()
+                                    startFruitTimer()
+                                }
+                                
+                            }
+                        }
+                    //                        .onAppear {
+                    //                            //if showFruitView {
+                    //                                startFruitTimer()
+                    //
+                    //                        }
+                    // startFruitTimer()
+                    
+                } else if showFruitView && !showCheatView { // Only display FruitView if showCheatView is false
+                    FruitView(fruit: $currentFruit, countdown2: $fruitCountdown, showRightView: $showRightView, showWrongView: $showWrongView, isCountdownPaused: $isCountdownPaused, onNextFruit: getNextFruit)
+                        .onAppear {
+                            UIApplication.shared.isIdleTimerDisabled = true // Disable idle timer (This is to prevent the phone from locking the screen while the fruits are displayed)
+                            if showRightView || showWrongView {
+                                isCountdownPaused = false
+                                getNextFruit() // Move this line after setting isCountdownPaused to false
+                            }
+                        }
+                        .onChange(of: self.fruitCountdown) { newValue in
+                            if newValue <= 3 {
+                                showRightView = false
+                                showWrongView = false
+                            }
+                        }
+                        .onChange(of: self.fruitCountdown) { newValue in
+                            if newValue <= 3 {
+                                showRightView = false
+                                showWrongView = false
+                            }
+                        }
+                } else if showCheatView { // Display CheatView when player is cheating
+                    CheatView()
+                } else if showRightView {
+                    RightView()
+                        .onAppear {
+                            getNextFruit()
+                            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                                showRightView = false
                                 showFruitView = true
-                                getNextFruit()
                                 startFruitTimer()
                             }
+                            score += 1 // Increment score on correct guess
+                        }
+                } else if showWrongView {
+                    WrongView()
+                        .onAppear {
+                            getNextFruit()
+                            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                                showWrongView = false
+                                showFruitView = true
+                                
+                                startFruitTimer()
+                            }
+                        }
+                } else if showTimeIsUpView {
+                    TimeIsUpView()
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                showTimeIsUpView = false
+                                showWellDoneView = true
+                                printResults()
+                            }
+                        }
+                } else if showWellDoneView {
+                    FirstCodeView(resetGame: resetGame , guessedWords: guessedWords, score: score)
+                    //(resetGame: resetGame, score: score) // Pass score to WellDoneView
+                }
+            }
+            //.rotationEffect(Angle(degrees: isRTL ? 90 : -90))
+            //        .frame(maxWidth: .infinity, maxHeight: .infinity)
+            //        .background(Color.yellow)
+            //        .edgesIgnoringSafeArea(.all)
+            .onChange(of: motionManager.isPhoneInPosition) { newValue in
+                if newValue && showHoldInView {
+                    showHoldInView = false
+                    showReadyView = true
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+                resetGame()
+            }
+            //        .onAppear {
+            //            //if showFruitView {
+            //                startFruitTimer()
+            //
+            //        }
+            //}
+            
+            ///////////
+            ///
+            
+            .navigationBarItems(
+               // trailing:
+                leading:
+                    
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        ZStack {
+                            Image("xmark")
+                                .resizable()
+                                .frame(width: 23, height: 24)
+                                .foregroundColor(.white)
+                                .padding()
                             
                         }
-                    }
-//                        .onAppear {
-//                            //if showFruitView {
-//                                startFruitTimer()
-//
-//                        }
-               // startFruitTimer()
-
-            } else if showFruitView && !showCheatView { // Only display FruitView if showCheatView is false
-                FruitView(fruit: $currentFruit, countdown2: $fruitCountdown, showRightView: $showRightView, showWrongView: $showWrongView, isCountdownPaused: $isCountdownPaused, onNextFruit: getNextFruit)
-                .onAppear {
-                    UIApplication.shared.isIdleTimerDisabled = true // Disable idle timer (This is to prevent the phone from locking the screen while the fruits are displayed)
-                if showRightView || showWrongView {
-                isCountdownPaused = false
-                getNextFruit() // Move this line after setting isCountdownPaused to false
-                }
-                }
-                .onChange(of: self.fruitCountdown) { newValue in
-                if newValue <= 3 {
-                showRightView = false
-                showWrongView = false
-                }
-                }
-                .onChange(of: self.fruitCountdown) { newValue in
-                if newValue <= 3 {
-                showRightView = false
-                showWrongView = false
-                }
-                }
-                } else if showCheatView { // Display CheatView when player is cheating
-                CheatView()
-            } else if showRightView {
-                RightView()
-                    .onAppear {
-                        getNextFruit()
-                        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                            showRightView = false
-                            showFruitView = true
-                            startFruitTimer()
-                        }
-                        score += 1 // Increment score on correct guess
-                    }
-            } else if showWrongView {
-                WrongView()
-                    .onAppear {
-                        getNextFruit()
-                        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                            showWrongView = false
-                            showFruitView = true
+                        
+                        .background(
+                            Circle()
+                                .fill(Color("Lpink"))
+                                .frame(width: 42.16, height: 41)
                             
-                            startFruitTimer()
-                        }
+                        )
                     }
-            } else if showTimeIsUpView {
-                TimeIsUpView()
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            showTimeIsUpView = false
-                            showWellDoneView = true
-                            printResults()
-                        }
-                    }
-            } else if showWellDoneView {
-                FirstCodeView(resetGame: resetGame , guessedWords: guessedWords, score: score)
-                //(resetGame: resetGame, score: score) // Pass score to WellDoneView
-            }
-        }
-        //.rotationEffect(Angle(degrees: isRTL ? 90 : -90))
-        //        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        //        .background(Color.yellow)
-        //        .edgesIgnoringSafeArea(.all)
-        .onChange(of: motionManager.isPhoneInPosition) { newValue in
-            if newValue && showHoldInView {
-                showHoldInView = false
-                showReadyView = true
-            }
-        }
-        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
-            resetGame()
-        }
-//        .onAppear {
-//            //if showFruitView {
-//                startFruitTimer()
-//
-//        }
-        //}
+                
+                
+            )
+            
+           // .navigationBarBackButtonHidden(true)
+           // .navigationBarItems(leading: CustomNavEditRoundView())
+            
+        }//nav
     }
     
     private func getNextFruit() {
@@ -518,7 +556,7 @@ struct GameStart: View {
 //                    .font(.custom("TufuliArabicDEMO-Medium", size: 40))
 //                    .frame(width: UIScreen.main.bounds.height - 16)
 //                    .padding()
-//                    
+//
 //                    Button(action: {}) {
 //                        Text(NSLocalizedString("Start_Team2_Round", comment: ""))
 //                    }
