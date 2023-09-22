@@ -47,8 +47,11 @@ struct OmnyaTeams: View {
     @State private var selectedTeam: TeamNumber22? = .firstTeam
     
     var categoryWords: [String]
-    
+    @Environment(\.presentationMode) var presentationMode
+
     var body: some View {
+        NavigationView{
+
         VStack {
             if showHoldInViewTeams {
                 HoldInPositionViewTeams(selectedTeam: isTeam1TurnTeams ? .firstTeam : .secondTeam)
@@ -153,6 +156,42 @@ struct OmnyaTeams: View {
             firstresetGameTeams()
             //secondresetGameTeams()
         }
+            
+            
+            
+            
+            .navigationBarItems(
+               // trailing:
+                leading:
+                    
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        ZStack {
+                            Image("xmark")
+                                .resizable()
+                                .frame(width: 23, height: 24)
+                                .foregroundColor(.white)
+                                .padding()
+                            
+                        }
+                        
+                        .background(
+                            Circle()
+                                .fill(Color("Lpink"))
+                                .frame(width: 42.16, height: 41)
+                            
+                        )
+                    }
+                
+                
+            )
+            
+           // .navigationBarBackButtonHidden(true)
+           // .navigationBarItems(leading: CustomNavEditRoundView())
+            
+
+    }
     }
     
     //---------------------------------------------//
